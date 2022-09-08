@@ -73,6 +73,22 @@ public class StepTracker {
         return Converter.getCaloriesBySteps(getStepsByMonth(month));
     }
 
+    public int getBestSeries(int month) {
+        int bestSeries = 0;
+        int currentSeries = 0;
+        for (int i = 0; i < 30; i++) {
+            if (monthData[month].getStepsByDay(i) >= targetSteps) {
+                currentSeries++;
+                if (currentSeries > bestSeries) {
+                    bestSeries = currentSeries;
+                }
+            } else {
+                currentSeries = 0;
+            }
+        }
+        return bestSeries;
+    }
+
     public void printStatistic(int month) {
         System.out.println("Количество шагов по дням:");
         System.out.println(stepsByDay(month));
@@ -81,6 +97,7 @@ public class StepTracker {
         System.out.printf("Среднее количество шагов за месяц: %.2f\n", getAverageStepsByMonth(month));
         System.out.printf("Пройденная дистанция: %.4f км", getDistance(month));
         System.out.printf("Сожгли килокалорий: %.4f ", getCalories(month));
+        System.out.println("Лучшая серия: " + getBestSeries(month));
     }
 
     private static class MonthData {
