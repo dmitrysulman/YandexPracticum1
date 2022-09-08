@@ -6,7 +6,7 @@ public class Converter {
     private final static int CALORIES_IN_STEP = 50;
 
     public static double getDistanceBySteps(int steps) {
-        return steps * CENTIMETERS_IN_STEP / 100;
+        return steps * CENTIMETERS_IN_STEP / 100000;
     }
 
     public static double getCaloriesBySteps(int steps) {
